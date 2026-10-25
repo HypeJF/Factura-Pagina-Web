@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!-- DOCTYPE: le dice al navegador que este documento es HTML5 -->
+<html lang="es">
+<!-- html: la etiqueta raiz; lang="es" indica que el contenido esta en espanol -->
+<head>
+    <!-- head: informacion SOBRE la pagina (no se ve en la ventana) -->
+    <meta charset="UTF-8">
+    <!-- charset UTF-8: permite tildes, enie y simbolos -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- viewport: la pagina se adapta al ancho del celular -->
+    <title>Equipos de mi casa</title>
+    <!-- title: el texto que aparece en la pestana del navegador -->
+    <!-- Bootstrap: una hoja de estilos YA HECHA que se carga desde internet (CDN). -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+</head>
+<body class="container py-3">
+    
+    <header class="p-4 mb-4 bg-primary text-white rounded">
+        <!-- COMPONENTE NUEVO 1: Badge agregado al título -->
+        <h1>Equipos de mi casa <span class="badge bg-info text-dark fs-5 align-middle">Inventario</span></h1>
+        <p>Consumo de una semana en mi casa: Tarifa: 960.340 COP por kWh.</p>
+        
+        <nav class="nav nav-pills">
+            <a class="nav-link text-white" href="index.html">Inicio</a>
+            <!-- MENÚ ACTIVO CORREGIDO -->
+            <a class="nav-link active bg-light text-primary" href="equipos.html">Equipos de mi casa</a>
+            <a class="nav-link text-white" href="registro.html">Registrar un equipo</a>
+            <a class="nav-link text-white" href="mi-factura.html">Mi Factura</a>
+            <a class="nav-link text-white" href="encuesta.html">Encuesta</a>
+        </nav>
+    </header>
+ 
+    <main>
+        <!-- COMPONENTE NUEVO 2: Alert para dar información al usuario -->
+        <div class="alert alert-success" role="alert">
+            <strong>¡Dato curioso!</strong> Conocer el consumo individual de tus equipos te permite identificar cuáles impactan más en tu factura.
+        </div>
+
+        <section>
+            <h2>Consumo por equipo</h2>
+            <table class="table table-striped table-bordered table-hover">
+                <caption>Consumo semanal de los equipos</caption>
+                <thead class="table-light">
+                    <tr>
+                        <th rowspan="2" class="align-middle text-center">Equipo</th>
+                        <th rowspan="2" class="align-middle text-center">Potencia (W)</th>
+                        <th colspan="2" class="text-center">Horas de uso por día</th>
+                        <th rowspan="2" class="align-middle text-center">kWh en la semana</th>
+                        <th rowspan="2" class="align-middle text-center">Costo en la semana (COP)</th>
+                    </tr>
+                    <tr>
+                        <th class="text-center">Lunes a viernes</th>
+                        <th class="text-center">Sábado y domingo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Olla Arrocera</td><td class="text-center">400</td><td class="text-center">0,75</td><td class="text-center">0,75</td><td class="text-center">2,1</td><td class="text-end">2.017</td></tr>
+                    <tr><td>Licuadora</td><td class="text-center">500</td><td class="text-center">0,1</td><td class="text-center">0,15</td><td class="text-center">0,4</td><td class="text-end">384</td></tr>
+                    <tr><td>Nevera</td><td class="text-center">54,17</td><td class="text-center">24</td><td class="text-center">24</td><td class="text-center">1,3</td><td class="text-end">1.248</td></tr>
+                    <tr><td>Televisor</td><td class="text-center">100</td><td class="text-center">7 (promedio)</td><td class="text-center">10</td><td class="text-center">5,5</td><td class="text-end">5.281</td></tr>
+                </tbody>
+                <tfoot class="table-group-divider">
+                    <tr>
+                        <th colspan="4" class="text-end">Total de la semana</th>
+                        <td class="text-center fw-bold">41,71</td>
+                        <td class="text-end fw-bold">8.930</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </section>
+ 
+        <section class="mt-5">
+            <h2>¿Qué equipo gasta más?</h2>
+            
+            <div class="mb-4">
+                <p>La <strong>olla arrocera</strong>: con solo unos minutos al dia, consume solo 2,1 kW/h en la semana</p>
+                <figure class="bg-light p-2 border rounded d-inline-block">
+                    <img class="img-fluid rounded shadow-sm" src="img/Arrocera_Consumo.jpeg" alt="Imagen de la etiqueta de Olla Arrocera, consumo 400W" width="400">
+                    <figcaption class="text-muted mt-2 text-center">Consumo Olla Arrocera de 400W</figcaption>
+                </figure>
+            </div>
+
+            <div class="mb-4">
+                <p>La <strong>licuadora</strong>: con solo unos minutos al dia, consume solo 0,4 kW/h en la semana</p>
+                <figure class="bg-light p-2 border rounded d-inline-block">
+                    <img class="img-fluid rounded shadow-sm" src="img/Licuadora_consumo.jpeg" alt="Imagen de la etiqueta de Licuadora, consumo 500W" width="400" height="200">
+                    <figcaption class="text-muted mt-2 text-center">Consumo Licuadora de 500W</figcaption>
+                </figure>
+            </div>
+
+            <div class="mb-4">
+                <p>La <strong>nevera</strong>: conectada siempre, consume unos 1.30kW/24h en la semana</p>
+                <figure class="bg-light p-2 border rounded d-inline-block">
+                    <img class="img-fluid rounded shadow-sm" src="img/Nevera_Consumo.jpeg" alt="Imagen de la etiqueta de Nevera, consumo 54.17W" width="400">
+                    <figcaption class="text-muted mt-2 text-center">Consumo Nevera de 54,17W o 1.3 kWh</figcaption>
+                </figure>
+            </div>
+
+            <div class="mb-4">
+                <p>El <strong>televisor</strong>: con unas horas al dia, consume unos 5,5kWh en la semana</p>
+                <figure class="bg-light p-2 border rounded d-inline-block">
+                    <img class="img-fluid rounded shadow-sm" src="img/TV_consumo.jpeg" alt="Imagen de la etiqueta de TV, consumo 100W" width="400">
+                    <figcaption class="text-muted mt-2 text-center">Consumo TV de 100W</figcaption>
+                </figure>
+            </div>
+        </section>
+    </main>
+ 
+    <footer class="mt-4 text-muted border-top pt-3">
+        <p>Ingeniería Web I · IU Digital de Antioquia · 2026-2</p>
+    </footer>
+</body>
+</html>
