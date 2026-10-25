@@ -60,4 +60,51 @@
                     <label for="tipo" class="form-label">Tipo de equipo:</label>
                     <select class="form-select" id="tipo" name="tipo">
                         <option value="calor">Produce calor (ducha, plancha, estufa)</option>
-                        <option value="frio">Produce frío (nevera, aire acondicionado)</option
+                        <option value="frio">Produce frío (nevera, aire acondicionado)</option>
+                        <option value="electronico">Electrónico (televisor, computador)</option>
+                        <option value="motor">Tiene motor (lavadora, licuadora)</option>
+                    </select>
+                </p>
+            </fieldset>
+ 
+            <fieldset class="border rounded p-3 mb-3">
+                <legend>Uso</legend>
+                
+                <p class="mb-2">¿Cuándo lo usa más?</p>
+                <!-- BOTONES RADIO ESTRUCTURADOS CON BOOTSTRAP -->
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="dia" name="momento" value="dia" checked>
+                    <label class="form-check-label" for="dia">De día</label>
+                </div>
+                <div class="form-check form-check-inline mb-3">
+                    <input class="form-check-input" type="radio" id="noche" name="momento" value="noche">
+                    <label class="form-check-label" for="noche">De noche (6 a 9 pm, la hora más cara)</label>
+                </div>
+ 
+                <!-- CHECKBOX ESTRUCTURADO CON BOOTSTRAP -->
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="desconecta" name="desconecta" value="si">
+                    <label class="form-check-label" for="desconecta">Lo desconecto cuando no lo uso</label>
+                </div>
+ 
+                <p>
+                    <label for="fecha" class="form-label">Fecha del registro:</label>
+                    <input class="form-control" type="date" id="fecha" name="fecha">
+                </p>
+ 
+                <p>
+                    <label for="notas" class="form-label">Observaciones:</label><br>
+                    <textarea class="form-control" id="notas" name="notas" rows="3" cols="40" placeholder="Ej.: la etiqueta está borrosa"></textarea>
+                </p>
+            </fieldset>
+ 
+            <button class="btn btn-primary" type="submit">Registrar</button>
+            <button class="btn btn-secondary" type="reset">Borrar</button>
+        </form>
+    </main>
+ 
+    <footer class="mt-4 text-muted border-top pt-3">
+        <p>Ingeniería Web I · IU Digital de Antioquia · 2026-2</p>
+    </footer>
+</body>
+</html>
