@@ -22,11 +22,29 @@
     </header>
  
     <main>
-        <div class="alert alert-info" role="alert">
+        <!-- Alerta inicial (se ocultará al enviar los datos) -->
+        <div id="alerta-instrucciones" class="alert alert-info" role="alert">
             <strong>¡Hola!</strong> Por favor llena todos los datos de esta encuesta. Tu información nos ayuda a medir el impacto energético.
         </div>
 
-        <form action="encuesta.html" method="get">
+        <!-- SECCIÓN NUEVA: Aquí se mostrarán los resultados (inicialmente oculta con d-none) -->
+        <div id="seccion-resultados" class="d-none">
+            <div class="card border-success shadow-sm mb-4">
+                <div class="card-header bg-success text-white fs-5 fw-bold">
+                    ¡Gracias! Estos son los datos que enviaste:
+                </div>
+                <div class="card-body">
+                    <ul id="lista-datos" class="list-group list-group-flush">
+                        <!-- JavaScript llenará esto -->
+                    </ul>
+                </div>
+            </div>
+            <!-- Botón para volver a llenar la encuesta (limpia la URL) -->
+            <a href="encuesta.html" class="btn btn-outline-primary">Llenar nueva encuesta</a>
+        </div>
+
+        <!-- Formulario (se ocultará al enviar los datos) -->
+        <form id="formulario-encuesta" action="encuesta.html" method="get">
  
             <fieldset class="border rounded p-3 mb-3">
                 <legend>1. Información General</legend>
@@ -116,5 +134,62 @@
     <footer class="mt-4 text-muted border-top pt-3">
         <p>Ingeniería Web I · IU Digital de Antioquia · 2026-2</p>
     </footer>
+
+    <!-- SCRIPT DE JAVASCRIPT: Lee la URL y muestra los resultados -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Capturamos los parámetros de la URL (lo que envía el formulario por GET)
+            const parametros = new URLSearchParams(window.location.search);
+            
+            // Si la URL tiene parámetros, significa que el formulario fue enviado
+            if (parametros.toString() !== "") {
+                // 1. Ocultamos el formulario y la alerta inicial
+                document.getElementById("formulario-encuesta").classList.add("d-none");
+                document.getElementById("alerta-instrucciones").classList.add("d-none");
+                
+                // 2. Mostramos la sección de resultados
+                document.getElementById("seccion-resultados").classList.remove("d-none");
+                
+                // 3. Diccionario para que los nombres de los campos se vean bonitos
+                const nombresCampos = {
+                    "nombre_familia": "Familia",
+                    "correo": "Correo",
+                    "integrantes": "Integrantes",
+                    "estrato": "Estrato",
+                    "usa_led": "¿Usa LED?",
+                    "nivel_conciencia": "Nivel de conciencia",
+                    "estrategias": "Estrategias compartidas"
+                };
+
+                const lista = document.getElementById("lista-datos");
+                
+                // 4. Los checkboxes envían varios valores con el mismo nombre ("electrodomesticos")
+                // Así que los extraemos aparte para juntarlos
+                const electrodomesticos = parametros.getAll("electrodomesticos");
+                
+                // 5. Recorremos los datos enviados y creamos etiquetas <li> para cada uno
+                for (const [clave, valor] of parametros.entries()) {
+                    // Saltamos los electrodomésticos porque los procesamos todos juntos al final
+                    if (clave === "electrodomesticos") continue;
+
+                    const li = document.createElement("li");
+                    li.className = "list-group-item";
+                    
+                    let nombreBonito = nombresCampos[clave] || clave;
+                    let valorBonito = valor !== "" ? valor : "<em class='text-muted'>Sin respuesta</em>";
+                    
+                    li.innerHTML = `<strong>${nombreBonito}:</strong> ${valorBonito}`;
+                    lista.appendChild(li);
+                }
+
+                // Agregamos los electrodomésticos seleccionados
+                const liElectro = document.createElement("li");
+                liElectro.className = "list-group-item";
+                let textoElectro = electrodomesticos.length > 0 ? electrodomesticos.join(", ") : "<em class='text-muted'>Ninguno seleccionado</em>";
+                liElectro.innerHTML = `<strong>Electrodomésticos de mayor consumo:</strong> ${textoElectro}`;
+                lista.appendChild(liElectro);
+            }
+        });
+    </script>
 </body>
 </html>
